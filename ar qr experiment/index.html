@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>AR.js with QR-code experiment</title>
+    <script src="js/aframe-v0.7.1.js"></script> 
+    <script src="js/aframe-ar.js"> </script>
+
+    <!-- GIF -->
+    <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script> 
+    <script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
+
+  </head>
+  <body>
+    GIF GIF GIF GIF
+    <a-scene embedded arjs>
+
+
+
+      <a-marker id="qrmarker" preset='custom'  type='pattern' url="qrmarker.patt">
+        <!--<a-text value="AAAAAAAAA" color="red" position='0 0.5 0'></a-text>-->
+        <a-entity geometry="primitive:box" material="shader:gif;src:url(sample.gif);" gif="" position='0 0.5 0'></a-entity>
+      </a-marker>
+
+      <a-entity camera></a-entity camera>
+   
+    </a-scene>
+  	
+  </body>
+</html>

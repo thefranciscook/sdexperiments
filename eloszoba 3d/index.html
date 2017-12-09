@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>experiment 2.sketch</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>-->
+<script src="js/aframe-v0.7.1.js"></script> 
+</head>
+<body>
+	<!-- stats  -->
+<a-scene  inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
+
+	<a-collada-model src="model1.dae" scale="1 1 1"></a-collada-model>
+
+
+	<a-entity id="camera" camera look-controls wasd-controls position="0 2 0">
+		<a-entity cursor="fuse: true;" position="0 0 -1" scale=".01 .01 .01" geometry="primitive: ring" material="color: #fff; shader: flat"></a-entity>
+	</a-entity>
+
+
+	 
+
+</a-scene>
+</body>
+</html>

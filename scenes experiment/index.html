@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>experiment 2.sketch</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>-->
+<script src="js/aframe-v0.7.1.js"></script> 
+</head>
+<body>
+	<!-- stats  -->
+<a-scene  inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
+	<a-assets>
+    	<img id="fog" src="img/fog.png">
+    	<img id="room" src="img/background.jpg">
+    	<!--<a-asset-item id="box" src="models/cardboard_transport_shipping_box/scene.gltf"></a-asset-item>-->
+  	</a-assets>
+
+  	 <a-entity id="boxinroom" position="0 -5 2" gltf-model="url(models/cardboard_transport_shipping_box/scene.gltf)" scale="0.05 0.05 0.05"></a-entity>
+
+
+	<a-curvedimage id="foginroom" src="#fog" radius="5" theta-length="360" height="12" scale="1 1 1"></a-curvedimage>
+
+
+	<a-sky id="sky" src="#room">
+		<a-root>
+			<a-entity geometry="primitive: sphere" material="shader: flat; src: url(img/background.jpg);" scale="1 1 1"></a-entity>
+		</a-root>
+	</a-sky>
+
+
+	<a-entity id="camera" camera look-controls wasd-controls>
+		<a-entity cursor="fuse: true;" position="0 0 -1" scale=".01 .01 .01" geometry="primitive: ring" material="color: #fff; shader: flat"></a-entity>
+	</a-entity>
+
+
+	 
+
+</a-scene>
+<script type="text/javascript">
+
+var sceneEl = document.querySelector('a-scene');
+
+var boxinroom = sceneEl.querySelector('#boxinroom');
+console.log('boxinroom', boxinroom);
+
+boxinroom.addEventListener('model-loaded', function (event) {
+  console.log('model loaded', event);
+});
+boxinroom.addEventListener('model-error', function (event) {
+  console.log('model error', event);
+});
+
+
+
+
+</script>
+</body>
+</html>

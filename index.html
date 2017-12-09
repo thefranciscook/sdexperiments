@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Super Delivery Experiments</title>
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+	
+	<!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <style type="text/css">
+		body {
+			font-family: 'Fira Sans', sans-serif !important;
+		}
+
+		.card-image {
+			background-color: black;
+		}
+
+		.card-image img {
+			opacity: .5;
+			height:150px;
+			object-fit: cover;
+		}
+
+		.card-image video {
+			opacity: .5;
+			height:150px;
+			object-fit: cover;
+		}
+
+		.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+			color: blue !important;
+		}
+
+		a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+			color: blue !important;
+		}
+	</style>
+          
+  </head>
+  <body>
+  	<div class="container">
+	  	
+	  		<div class="row">
+	  			<div class="col s12 ">
+		  			<h1>S.D. Experiments</h1>
+		  			<div class="divider"></div>
+	  			</div>
+  			</div>
+	  	
+
+	  		<!-- Cards container -->
+		    <div class="col s12 m12 l12">
+		    	<div class="row">
+		    		<!-- Col: Card  -->
+			      	<div class="col s12 m6 l4">
+			      		<div class="card">
+				            <div class="card-image">
+				              <img src="./scenes experiment/thumb.png">
+				              <span class="card-title">360 photo experiment</span>
+				            </div>
+				            <div class="card-content">
+				              <p>360 degree photo augmented with 3d objects</p>
+				            </div>
+				            <div class="card-action">
+				              <a href="./scenes experiment">Try it</a>
+				            </div>
+			          </div>
+			      	</div>
+
+			      	<!-- Col: Card  -->
+			      	<div class="col s12 m6 l4">
+			      		<div class="card">
+				            <div class="card-image">
+				              <img src="./eloszoba 3d/thumb.png">
+				              <span class="card-title">3D model experiment</span>
+				            </div>
+				            <div class="card-content">
+				              <p>3d model of the hall made with tap measure ios AR app and sketchup</p>
+				            </div>
+				            <div class="card-action">
+				              <a href="./eloszoba 3d">Try it</a>
+				            </div>
+			          </div>
+			      	</div>
+
+			      	<!-- Col: Card  -->
+			      	<div class="col s12 m6 l4">
+			      		<div class="card">
+				            <div class="card-image">
+				              <!--<img src="./ar experiment/thumb.png">-->
+				              <video class="responsive-video" src="./ar experiment/thumb.mp4" autoplay loop>
+				              </video>
+				              <span class="card-title">AR experiment</span>
+				            </div>
+				            <div class="card-content">
+				              	<p>Tag based augmented reality experiment</p>
+				              	<a href="./ar experiment/markers/inside with border.png">inside marker</a> | 
+				              	<a href="./ar experiment/markers/door with border.png">door marker</a> | 
+				              	<a href="./ar experiment/markers/fence with border.png">fence marker</a> | 
+				              	<a href="https://jeromeetienne.github.io/AR.js/data/images/HIRO.jpg">hiro marker</a>
+				            </div>
+				            <div class="card-action">
+				              <a href="./ar experiment">Try it</a>
+				            </div>
+			          </div>
+			      	</div>
+
+			      	<div class="col s12 m6 l4">
+			      		<div class="card">
+				            <div class="card-image">
+				              <img src="./ar qr experiment/thumb.png">
+				              </video>
+				              <span class="card-title">QR code as AR marker</span>
+				            </div>
+				            <div class="card-content">
+				              	<p>Instant AR</p>
+				            </div>
+				            <div class="card-action">
+				              <a href="./ar qr experiment">Try it</a>
+				            </div>
+			          </div>
+			      	</div>
+
+			      	<div class="col s12 m6 l4">
+			      		<div class="card">
+				            <div class="card-image">
+				              <img src="./point cloud/thumb.png">
+				              </video>
+				              <span class="card-title">Sweep point cloud AFrame render</span>
+				            </div>
+				            <div class="card-content">
+				              	<p>Trying to remake our @baggio ad, with Aframe.js for better quality 3d effects.</p>
+				              	<a href="./point cloud/indexVR.html">VR Goggle optimized view</a> 
+				            </div>
+				            <div class="card-action">
+				              <a href="./point cloud">Desktop / mobile optimized view</a>
+				            </div>
+			          </div>
+			      	</div>
+
+
+			      	<div class="col s12 m6 l4">
+			      		<div class="card">
+				            <div class="card-image">
+				              <img src="./real2vr/thumb.png">
+				              </video>
+				              <span class="card-title">360 video to lidar scape</span>
+				            </div>
+				            <div class="card-content">
+				              	<p>Trying to simulate the moment of truth: arriving to a house in reality (360 video) and switching to VR at the door (lidar point scape).</p>
+				              	<a href="./real2vr/indexVR.html">VR Goggle optimized view</a> 
+				            </div>
+				            <div class="card-action">
+				              <a href="./real2vr">Desktop optimized view</a>
+				            </div>
+			          </div>
+			      	</div>
+
+		    </div>
+		  
+  	</div>
+  </body>
+</html>

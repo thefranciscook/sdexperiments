@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>AR.js experiment</title>
+    <script src="js/aframe-v0.7.1.js"></script> 
+    <script src="js/aframe-ar.js"> </script>
+    
+  </head>
+  <body>
+    <div style="color:red">
+      <p id="doorstatus">door visible</p>
+      <p id="insidestatus">inside visible</p>
+    </div>
+    <!--<div id="overlay" style="width:100%; height: 100%; background-color: blue; diplay:none"></div>-->
+    <a-scene embedded arjs>
+      <a-assets>
+        <a-asset-item id="optimerBoldFont" src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
+      </a-assets>
+
+      <!-- box -->
+      <a-marker preset="hiro">
+            <a-entity id="boxinroom" position='0 0.5 0' gltf-model="url(models/cardboard_transport_shipping_box/scene.gltf)" scale="0.05 0.05 0.05"></a-entity>
+      </a-marker>
+
+      <a-marker id="insidemarker" preset='custom'  type='pattern' url="insidepattern.patt">
+      <!--<a-text value="Hello inside!" color="red" position='0 0.5 0'></a-text>-->
+      <!--<a-box position='0 0.5 0' material='color: black;' depth="100" height="1" width="100"></a-box>-->
+      <a-plane color="#CCC" height="10" width="10"></a-plane>
+      
+      </a-marker>
+
+      <a-marker id="doormarker" preset='custom'  type='pattern' url="doorpattern.patt">
+        <a-text value="Now I'm at the door.." color="red" position='0 0.5 0'></a-text>
+      </a-marker>
+
+      <a-marker preset='custom'  type='pattern' url="gatepattern.patt">
+        <a-text value="I arrived to the gate.." color="red" position='0 0.5 0'></a-text>
+      </a-marker>
+
+      <a-entity camera></a-entity camera>
+   
+    </a-scene>
+  	<script>
+
+    var insidestatus= document.querySelector("#insidestatus");
+    var doorstatus= document.querySelector("#doorstatus");
+      
+      var overlay = document.querySelector("#overlay");
+      var insidemarker = document.querySelector("#insidemarker");
+      var doormarker = document.querySelector("#doormarker");
+      var wasdoorvisible = false;
+      var markercheck = function(){
+
+        var debugui = document.querySelector("#arjsDebugUIContainer")
+        if(debugui){
+          debugui.style.display = "none"
+        }
+
+      console.log(insidemarker.object3D.visible);
+      console.log(doormarker.object3D.visible);
+
+      if(insidemarker.object3D.visible){
+        insidestatus.style.display = "block";
+      }
+      else {
+        insidestatus.style.display = "none";
+      }
+
+      if(doormarker.object3D.visible){
+        doorstatus.style.display = "block";
+      }
+      else {
+        doorstatus.style.display = "none";
+      }
+
+        /*console.log(insidemarker.object3D.visible);
+
+        if(doormarker.object3D.visible === true){
+          wasdoorvisible = true;
+          overlay.style.display = "block";
+        }
+
+        if(wasdoorvisible){
+          if(insidemarker.object3D.visible === true){
+            overlay.style.display = "none";
+          }
+          else {
+            overlay.style.display = "block";
+          }
+        }*/
+      };
+      
+
+      setTimeout(setInterval(markercheck, 500), 15000);
+      
+      
+    </script>
+  </body>
+</html>
