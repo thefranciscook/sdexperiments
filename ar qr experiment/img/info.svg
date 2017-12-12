@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="16px" height="34px" viewBox="0 0 16 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
-    <title>TEXT info</title>
+    <title>info</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-style="italic" font-size="40" font-family="FiraSans-BlackItalic, Fira Sans" font-weight="700">
-        <g id="TEXT-info" transform="translate(0.000000, -13.000000)">
-            <text id="C-FututreShock.ai" fill="#00FFFB">
-                <tspan x="0" y="47">i</tspan>
-            </text>
-            <text id="R-FututreShock.ai" style="mix-blend-mode: lighten;" fill="#FF0000">
-                <tspan x="3" y="47">i</tspan>
-            </text>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="info" transform="translate(0.000000, -13.000000)">
+            <path d="M10.88,25.64 L7.92,47 L0.16,47 L3.12,25.64 L10.88,25.64 Z M7.56,22.32 C6.3866608,22.32 5.4466702,21.9733368 4.74,21.28 C4.0333298,20.5866632 3.68,19.6933388 3.68,18.6 C3.68,17.2399932 4.1533286,16.1066712 5.1,15.2 C6.0466714,14.2933288 7.2133264,13.84 8.6,13.84 C9.7733392,13.84 10.7133298,14.1866632 11.42,14.88 C12.1266702,15.5733368 12.48,16.4666612 12.48,17.56 C12.48,18.9200068 12.0066714,20.0533288 11.06,20.96 C10.1133286,21.8666712 8.9466736,22.32 7.56,22.32 Z" id="C-FututreShock.ai" fill="#00FFFB"></path>
+            <path d="M13.88,25.64 L10.92,47 L3.16,47 L6.12,25.64 L13.88,25.64 Z M10.56,22.32 C9.3866608,22.32 8.4466702,21.9733368 7.74,21.28 C7.0333298,20.5866632 6.68,19.6933388 6.68,18.6 C6.68,17.2399932 7.1533286,16.1066712 8.1,15.2 C9.0466714,14.2933288 10.2133264,13.84 11.6,13.84 C12.7733392,13.84 13.7133298,14.1866632 14.42,14.88 C15.1266702,15.5733368 15.48,16.4666612 15.48,17.56 C15.48,18.9200068 15.0066714,20.0533288 14.06,20.96 C13.1133286,21.8666712 11.9466736,22.32 10.56,22.32 Z" id="R-FututreShock.ai" fill="#FF0000" style="mix-blend-mode: lighten;"></path>
         </g>
     </g>
 </svg>
