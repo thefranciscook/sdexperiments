@@ -12,13 +12,11 @@
 
   </head>
   <body>
-    GIF GIF GIF GIF
-    <a-scene embedded arjs>
+    <a-scene embedded arjs="debugUIEnabled: false" vr-mode-ui="enabled: false">
 
 
       <!-- old hand cloured prototype -->
       <a-marker id="qrmarker" preset='custom'  type='pattern' url="qrmarker.patt">
-        <!--<a-text value="AAAAAAAAA" color="red" position='0 0.5 0'></a-text>-->
         <a-entity geometry="primitive:box" material="shader:gif;src:url(sample.gif);" gif="" position='0 0.5 0'></a-entity>
       </a-marker>
 
@@ -65,6 +63,9 @@
       <a-entity camera></a-entity camera>
    
     </a-scene>
-  	
+  	<script>
+      //var scene = document.querySelector('a-scene');
+      //var arjs = scene.systems['arjs'].data.debugUIEnabled = false;
+    </script>
   </body>
 </html>
