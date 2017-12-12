@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="41px" viewBox="0 0 28 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
+    <title>TEXT info</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-style="italic" font-size="40" font-family="FiraSans-BlackItalic, Fira Sans" font-weight="700">
+        <g id="TEXT-info" transform="translate(1.000000, -13.000000)">
+            <text id="C-FututreShock.ai" fill="#00FFFB">
+                <tspan x="0" y="47">$</tspan>
+            </text>
+            <text id="R-FututreShock.ai" style="mix-blend-mode: lighten;" fill="#FF0000">
+                <tspan x="3" y="47">$</tspan>
+            </text>
+        </g>
+    </g>
+</svg>
