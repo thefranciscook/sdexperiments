@@ -1,5 +1,80 @@
 'use strict'
 
+var getCSV  = function (url, callback) {
+    var callback = (typeof callback == 'function' ? callback : false), xhr = null;
+    try {
+      xhr = new XMLHttpRequest();
+    } catch (e) {
+      try {
+        xhr = new ActiveXObject("Msxml2.XMLHTTP");
+      } catch (e) {
+        xhr = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+    }
+    if (!xhr)
+           return null;
+    xhr.open("GET", url,true);
+    xhr.onreadystatechange=function() {
+      if (xhr.readyState==4 && callback) {
+        callback(xhr.responseText)
+      }
+    }
+    xhr.send(null);
+    return xhr;
+}
+
+//var csv is the CSV file with headers
+function csvJSON(csv){
+
+  var lines=csv.split("\n");
+
+  var result = [];
+
+  var headers=lines[0].split(",");
+
+  for(var i=1;i<lines.length;i++){
+
+	  var obj = {};
+	  var currentline=lines[i].split(",");
+
+	  for(var j=0;j<headers.length;j++){
+		  obj[headers[j]] = parseInt(currentline[j]);
+	  }
+
+	  result.push(obj);
+
+  }
+  
+  //return result; //JavaScript object
+  return JSON.stringify(result); //JSON
+}
+
+function appendPointCloudToDOM(data){
+	var pointCloudElement = document.createElement("a-scatterplot");
+	pointCloudElement.setAttribute('x', "Y");
+	pointCloudElement.setAttribute('y', "Z");
+	pointCloudElement.setAttribute('z', "X");
+	pointCloudElement.setAttribute('val', "SIGNAL_STRENGTH");
+	pointCloudElement.setAttribute('colorpreset', "cool");
+	pointCloudElement.setAttribute('showcolorbar', "false");
+	
+	pointCloudElement.setAttribute('scale', data.scaleX + ' ' + data.scaleY + ' ' + data.scaleZ);
+	pointCloudElement.setAttribute('position', data.positionX + ' ' + data.positionY + ' ' + data.positionZ);
+	
+	// json url 
+	if(data.jsonUrl){
+		pointCloudElement.setAttribute('src', 'url(' + data.jsonUrl + ')');
+	}
+
+	// csv raw
+	if(data.rawJson){
+		pointCloudElement.setAttribute('raw', data.rawJson);
+	}
+
+	var pointCloudParent = document.getElementById('scene');
+	pointCloudParent.appendChild(pointCloudElement); 
+}
+
 
 var pointCloudId = window.location.hash.substr(1);
 
@@ -21,26 +96,42 @@ client.getEntry(pointCloudId).then(
 
 		console.log(pointCloudEntry);
 
+		var pointCloudData = {
+						scaleX: pointCloudEntry.fields.scaleX,
+						scaleY: pointCloudEntry.fields.scaleY,
+						scaleZ: pointCloudEntry.fields.scaleZ,
+						positionX: pointCloudEntry.fields.positionX,
+						positionY: pointCloudEntry.fields.positionY,
+						positionZ: pointCloudEntry.fields.positionZ,
+					};
+
 		var jsonFile = pointCloudEntry.fields.jsonFile;
+		var csvFile = pointCloudEntry.fields.csvFile;
 
-		if(jsonFile){
-			var jsonFileId = jsonFile.sys.id;
+		// if(jsonFile){
+		// 	client.getAsset(jsonFile.sys.id)
+		// 		.then(function(jsonFileAsset){ 
+		// 			console.log(jsonFileAsset);
+		// 			pointCloudData.jsonUrl = jsonFileAsset.fields.file.url;
+		// 			appendPointCloudToDOM(pointCloudData);
+		// 		})
+		// 		.catch(console.error)
+		// }
 
-			client.getAsset(jsonFileId)
-				.then(function(jsonFileAsset){
-					console.log(jsonFileAsset);
+		if(csvFile){
+			client.getAsset(csvFile.sys.id)
+				.then(function(csvFileAsset){ console.log(csvFileAsset);
 
-					var jsonFileUrl = jsonFileAsset.fields.file.url;
+					getCSV(csvFileAsset.fields.file.url, function(csvString){ 
+						
+						pointCloudData.rawJson = csvJSON(csvString);
+						appendPointCloudToDOM(pointCloudData);
+					});
 
-					var pointCloudParent = document.getElementById('scene');
 					
-					var scaleAtrribute = 'scale="' + pointCloudEntry.fields.scaleX + ' ' + pointCloudEntry.fields.scaleY + ' ' + pointCloudEntry.fields.scaleZ + '"';
-					var positionAttribute = 'position="' + pointCloudEntry.fields.positionX + ' ' + pointCloudEntry.fields.positionY + ' ' + pointCloudEntry.fields.positionZ + '"';
-					var pointCloudTemplate = '<a-scatterplot src="url(' + jsonFileUrl +')" x="Y" y="Z" z="X" val="SIGNAL_STRENGTH" colorpreset="cool" ' + scaleAtrribute + ' ' + positionAttribute + ' > </a-scatterplot>';
-					
-					pointCloudParent.insertAdjacentHTML( 'beforeend', pointCloudTemplate );
 				})
 				.catch(console.error)
 		}
+
 	}).catch(console.error)
 }
