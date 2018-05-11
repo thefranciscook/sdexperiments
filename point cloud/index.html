@@ -4,8 +4,13 @@
 <meta charset="utf-8">
 <title>experiment 2.sketch</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>-->
-<script src="libs/aframe-v0.7.1.js"></script> 
+<!--<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
+<script src="libs/aframe-v0.7.1.js"></script>  -->
+<script src="libs/aframe-master.min.js"></script>  <!-- build w oculus go support -->
+<script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.1/dist/aframe-extras.js"></script> 
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.4.1/d3.min.js"></script>
   <script src="https://cdn.rawgit.com/zcanter/aframe-scatterplot/master/dist/a-scatterplot.min.js"></script>
 </head>
@@ -25,8 +30,8 @@
 <a-scatterplot src="url(source/convertcsv.json)" 
     	x="Y" y="Z" z="X" val="SIGNAL_STRENGTH" 
     	colorpreset='cool' 
-    	scale="41 21 52.5"
-    	position="-8 -5.5 -20"
+    	scale="82 42 105"
+    	position="-16 -16 -40"
     	>
     </a-scatterplot><!-- scale="6.84 3.5 8.79" -->
 
@@ -49,44 +54,55 @@
 		</a-image>
 
     
-   
-	
-	<a-entity id="camera" 
-			camera="userHeight: 1.6"
-			look-controls 
-			wasd-controls 
-	    	position="0 0 0"
-	    	rotation="0 180 0">
-	    	
+     
+    
+    
+	<a-entity id="rig"
+	          movement-controls="controls: gamepad, keyboard, touch"
+	          position="0 0 0">
+	  
 
-		<a-image 
-			id="avatarUI"
-			src="#avatarSprite"
-			width="1" height="1" 
-			transparent="true"
-			position="-0.56 0.25 -0.4" 
-			rotation="0 0 0"
-			scale=".25 .25 .25"></a-image>
+	    
+		
+		<a-entity id="camera" 
+				camera="userHeight: 1.6"
+				look-controls="pointerLockEnabled: true"
+		    	position="0 0 0"
+		    	rotation="0 180 0">
 
-		<a-image 
-			id="mapUI"
-			src="#mapSprite"
-			width="1" height="1" 
-			transparent="true"
-			position="0.69 0.24 -0.63" 
-			rotation="0 0 0"
-			scale=".5 .5 .5"></a-image>
+		    	<a-entity oculus-go-controls></a-entity>
+		    	
+		    <!--
+			<a-image 
+				id="avatarUI"
+				src="#avatarSprite"
+				width="1" height="1" 
+				transparent="true"
+				position="-0.56 0.25 -0.4" 
+				rotation="0 0 0"
+				scale=".25 .25 .25"></a-image>
 
-		<a-image 
-			id="handUI"
-			src="#handSprite"
-			width="1" height="1" 
-			transparent="true"
-			position="0 -0.1 -0.53" 
-			scale=".75 .75 .75"
-			rotation="0 0 0"></a-image>
+			<a-image 
+				id="mapUI"
+				src="#mapSprite"
+				width="1" height="1" 
+				transparent="true"
+				position="0.69 0.24 -0.63" 
+				rotation="0 0 0"
+				scale=".5 .5 .5"></a-image>
 
-    </a-entity>
+			<a-image 
+				id="handUI"
+				src="#handSprite"
+				width="1" height="1" 
+				transparent="true"
+				position="0 -0.1 -0.53" 
+				scale=".75 .75 .75"
+				rotation="0 0 0"></a-image>
+			-->
+
+	    </a-entity>
+	</a-entity>
 </a-scene>
 </body>
 </html>
