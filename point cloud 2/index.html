@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>experiment 2.sketch</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
+<script src="libs/aframe-v0.7.1.js"></script>  -->
+<script src="libs/aframe-master.min.js"></script>  <!-- build w oculus go support -->
+<script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.1/dist/aframe-extras.js"></script> 
+<script src="libs/aframe-vrml-component.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.4.1/d3.min.js"></script>
+  <script src="https://cdn.rawgit.com/zcanter/aframe-scatterplot/master/dist/a-scatterplot.min.js"></script>
+</head>
+<body>
+	<!-- stats  -->
+<a-scene  inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js" ><!-- fog="type: linear; color: #000; near: .2; far: 5" -->
+
+	<a-assets>
+		<a-asset-item id="obj" src="models/POINTS.obj"></a-asset-item>
+		<!--<a-asset-item id="ply" src="models/POINTS.ply"></a-asset-item>-->
+		<img id="messageSprite" crossorigin="anonymous" src="sprites/sprite_message.png">
+		<img id="avatarSprite" crossorigin="anonymous" src="sprites/sprite_avatar.png">
+		<img id="mapSprite" crossorigin="anonymous" src="sprites/sprite_map.png">
+		<img id="handSprite" crossorigin="anonymous" src="sprites/sprite_hand.png">
+	</a-assets> 
+
+	<a-sky color="green"></a-sky>
+
+
+<!--<a-scatterplot src="url(source/Book1_tojson_format1.json)" 
+    	x="Y" y="Z" z="X" val="SIGNAL_STRENGTH" 
+    	colorpreset='cool' 
+    	scale=".82 .42 .105"
+    	position="-16 -16 -40"
+    	>
+    </a-scatterplot>  
+
+    
+<a-scatterplot src="url(source/convertcsv.json)" 
+    	x="Y" y="Z" z="X" val="SIGNAL_STRENGTH" 
+    	colorpreset='cool' 
+    	scale="82 42 105"
+    	position="-16 -16 -40"
+    	>
+    </a-scatterplot>  -->
+
+    <!--<a-entity id="plymodel" plyModel="src: #ply" 
+    	rotation="-90 0 0"></a-entity>
+
+    <a-entity vrml="url(models/POINTS.wrl)"></a-entity>-->
+    <a-entity id="objmodel" plyModel="src: #obj" 
+    	rotation="-90 0 0"></a-entity>
+
+	<a-image 
+			id="messageUI"
+			src="#messageSprite"
+			width="1" height="1" 
+			transparent="true"
+			position="0 1.73 1.2" 
+			rotation="0 180 0"
+			material="opacity: 1"
+			material="fog: false">
+				<a-animation 
+	    		attribute="material.opacity"
+	    		dur="1000"
+	    		from=".75"
+	    		to="1"
+	    		repeat="indefinite"
+	    		>
+    	</a-animation>
+	</a-image>
+
+    
+     
+    
+    
+	<a-entity id="rig"
+	          movement-controls="controls: gamepad, keyboard, touch"
+	          position="0 0 0">
+	  
+
+	    
+		
+		<a-entity id="camera" 
+				camera="userHeight: 1.6"
+				look-controls="pointerLockEnabled: true"
+		    	position="0 0 0"
+		    	rotation="0 180 0">
+
+		    	<a-entity oculus-go-controls></a-entity>
+		    	
+		    <!--
+			<a-image 
+				id="avatarUI"
+				src="#avatarSprite"
+				width="1" height="1" 
+				transparent="true"
+				position="-0.56 0.25 -0.4" 
+				rotation="0 0 0"
+				scale=".25 .25 .25"></a-image>
+
+			<a-image 
+				id="mapUI"
+				src="#mapSprite"
+				width="1" height="1" 
+				transparent="true"
+				position="0.69 0.24 -0.63" 
+				rotation="0 0 0"
+				scale=".5 .5 .5"></a-image>
+
+			<a-image 
+				id="handUI"
+				src="#handSprite"
+				width="1" height="1" 
+				transparent="true"
+				position="0 -0.1 -0.53" 
+				scale=".75 .75 .75"
+				rotation="0 0 0"></a-image>
+			-->
+
+	    </a-entity>
+	</a-entity>
+</a-scene>
+</body>
+</html>
+
