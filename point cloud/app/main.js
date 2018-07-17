@@ -49,6 +49,13 @@ var csvJSON = function(csv){
   return JSON.stringify(result); //JSON
 }
 
+var pointCloudParent;
+var pointCloudElement;
+
+function removePointCloudFromDOM(){
+	pointCloudParent.removeChild(pointCloudElement);
+}
+
 function appendPointCloudToDOM(data, colorPreset){
 
 	var c = colorPreset;
@@ -58,7 +65,7 @@ function appendPointCloudToDOM(data, colorPreset){
 
 	console.log(c);
 
-	var pointCloudElement = document.createElement("a-scatterplot");
+	pointCloudElement = document.createElement("a-scatterplot");
 	pointCloudElement.setAttribute('x', "Y");
 	pointCloudElement.setAttribute('y', "Z");
 	pointCloudElement.setAttribute('z', "X");
@@ -80,7 +87,7 @@ function appendPointCloudToDOM(data, colorPreset){
 		pointCloudElement.setAttribute('raw', data.rawJson);
 	}
 
-	var pointCloudParent = document.getElementById('scene');
+	pointCloudParent = document.getElementById('scene');
 	pointCloudParent.appendChild(pointCloudElement); 
 }
 
@@ -204,6 +211,11 @@ var loadPointCloud = function(){
 
 document.addEventListener("DOMContentLoaded", function(event) {
 	document.querySelector('a-scene').addEventListener('loaded', function () {
-	    loadPointCloud();
+		loadPointCloud();
+		setInterval(function() {
+			removePointCloudFromDOM();
+		    loadPointCloud();
+		}, 60 * 1000);
+	    
 	});
   });
