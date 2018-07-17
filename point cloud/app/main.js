@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		setInterval(function() {
 			removePointCloudFromDOM();
 		    loadPointCloud();
-		}, 60 * 1000);
+		}, 300 * 1000);
 	    
 	});
   });
