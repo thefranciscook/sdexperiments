@@ -168,7 +168,7 @@ var loadPointCloud = function(){
 		  var result = [];
 
 		  var headers=["X","Y","Z","SIGNAL_STRENGTH"];
-		  var headersMax=[30,300,200,99]; //TODO same negative range
+		  var headersMax=[100,100,100,99]; //TODO same negative range
 
 		  for(var i=1;i<pointCount;i++){
 
