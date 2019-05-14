@@ -73,7 +73,7 @@ $(function() {
 	simpleStore.init({
 
 		// brand can be text or image URL
-		brand : "SimpleStore",
+		brand : "Super Seller Store",
 
 		// numder of products per row (accepts 1, 2 or 3)
 		numColumns : 3,

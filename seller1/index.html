@@ -5,7 +5,7 @@
     <!-- Basic Page Needs
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta charset="utf-8">
-    <title>simpleStore</title>
+    <title>Super Seller Store</title>
     <meta name="description" content="A clean, responsive storefront boilerplate with no database or backend">
     <meta name="author" content="">
 
@@ -26,6 +26,15 @@
     <!-- Favicon
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Loads <model-viewer> for modern browsers: -->
+    <script type="module"
+    src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js">
+    </script>
+    <!-- Loads <model-viewer> for old browsers like IE11: -->
+    <script nomodule
+    src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js">
+    </script>
 
 </head>
 <body>
@@ -71,7 +80,8 @@
 
             <div class="row">
                 <div class="four columns">
-                    <img src="" class="item_thumb"/>
+                    <!--<img src="" class="item_thumb"/>-->
+                    <model-viewer src="models/cardboard_transport_shipping_box/scene.gltf"></model-viewer>
                 </div>
                 <div class="eight columns">
                     <h5 class="item_name"></h5>
