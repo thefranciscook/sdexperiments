@@ -1,7 +1,7 @@
 {
 	"products" : [
 		{
-			"name" : "Awesome Vurt Crate",
+			"name" : "Super Product",
 			"price" : "35.99",
 			"options" : [
 				{ "Size" : "Gold,Medium,Large" }
