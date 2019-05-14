@@ -18,8 +18,7 @@
 			    { "OneOfAKind" : true }
 			],
 			"image" : "http://upload.wikimedia.org/wikipedia/commons/2/24/Blue_Tshirt.jpg",
-			"description" : "This is a really cool blue T-shirt",
-			"soldOut" : true
+			"description" : "This is a really cool blue T-shirt"
 		},
 		{
 			"name" : "Fun T-shirt",
