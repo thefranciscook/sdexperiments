@@ -1,0 +1,47 @@
+# Made using Asset Forge (www.assetforge.io) version 1.3 
+
+newmtl Rock (Instance)
+Ka 0.000000 0.000000 0.000000 
+Kd 0.6314 0.6235 0.6118 
+Ks 0.330000 0.330000 0.330000 
+
+newmtl Rock (Instance) (Instance)
+Ka 0.000000 0.000000 0.000000 
+Kd 0.6314 0.6235 0.6118 
+Ks 0.330000 0.330000 0.330000 
+
+newmtl Wood_Light (Instance)
+Ka 0.000000 0.000000 0.000000 
+Kd 0.7373 0.6314 0.4627 
+Ks 0.330000 0.330000 0.330000 
+
+newmtl Wood_Dark (Instance)
+Ka 0.000000 0.000000 0.000000 
+Kd 0.5176 0.4196 0.3333 
+Ks 0.330000 0.330000 0.330000 
+
+newmtl Wood_Light (Instance) (Instance)
+Ka 0.000000 0.000000 0.000000 
+Kd 0.7373 0.6314 0.4627 
+Ks 0.330000 0.330000 0.330000 
+
+newmtl Wood_Dark (Instance) (Instance)
+Ka 0.000000 0.000000 0.000000 
+Kd 0.5176 0.4196 0.3333 
+Ks 0.330000 0.330000 0.330000 
+
+newmtl golfBorder (Instance)
+Ka 0.000000 0.000000 0.000000 
+Kd 1 0.372549 0.2039216 
+Ks 0.330000 0.330000 0.330000 
+
+newmtl golfBuilding (Instance)
+Ka 0.000000 0.000000 0.000000 
+Kd 1 0.7137255 0.4078431 
+Ks 0.330000 0.330000 0.330000 
+
+newmtl _defaultMat (Instance)
+Ka 0.000000 0.000000 0.000000 
+Kd 1 1 1 
+Ks 0.330000 0.330000 0.330000 
+

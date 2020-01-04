@@ -1,0 +1,36 @@
+# Made using Asset Forge (1.3)
+
+:models
+#Mountains/Mountain_1[(-1, 0, 30);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Mountain_1_0;Rock]
+#Mountains/Mountain_2[(3, 0, 34);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Mountain_2_1;Rock]
+#Mountains/Mountain_3[(16, 0, 21);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Mountain_3_2;Rock]
+#Mountains/Mountain_4[(-9, 0, 13);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Mountain_4_3;Rock]
+#Beach/Beach_Prop_Docks_Straight[(0, 0, -1);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Beach_Prop_Docks_Straight_9;Wood_Light+Wood_Dark]
+#Beach/Beach_Prop_Docks_Straight[(0, 0, 0);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Beach_Prop_Docks_Straight_10;Wood_Light+Wood_Dark]
+#Beach/Beach_Prop_Docks_Straight[(0, 0, 1);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Beach_Prop_Docks_Straight_11;Wood_Light+Wood_Dark]
+#Beach/Beach_Prop_Docks_Straight[(0, 0, 2);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Beach_Prop_Docks_Straight_12;Wood_Light+Wood_Dark]
+#Beach/Beach_Prop_Docks_Straight_Supports[(0, 0, -1);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Beach_Prop_Docks_Straight_Supports_13;Wood_Dark+Wood_Light]
+#Beach/Beach_Prop_Docks_Straight_Supports[(0, 0, 0);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Beach_Prop_Docks_Straight_Supports_14;Wood_Dark+Wood_Light]
+#Beach/Beach_Prop_Docks_Straight_Supports[(0, 0, 1);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Beach_Prop_Docks_Straight_Supports_15;Wood_Dark+Wood_Light]
+#Beach/Beach_Prop_Docks_Straight_Supports[(1, 0, -1);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Beach_Prop_Docks_Straight_Supports_16;Wood_Dark+Wood_Light]
+#Beach/Beach_Prop_Docks_Straight_Supports[(1, 0, 0);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Beach_Prop_Docks_Straight_Supports_18;Wood_Dark+Wood_Light]
+#Beach/Beach_Prop_Docks_Straight_Supports[(0, 0, 2);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Beach_Prop_Docks_Straight_Supports_19;Wood_Dark+Wood_Light]
+#Beach/Beach_Prop_Docks_Straight_Supports[(1, 0, 1);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Beach_Prop_Docks_Straight_Supports_20;Wood_Dark+Wood_Light]
+#Beach/Beach_Prop_Docks_Straight_Supports[(1, 0, 2);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Beach_Prop_Docks_Straight_Supports_21;Wood_Dark+Wood_Light]
+Golf/building_windmill_wings[(0, 1, 1.8);(90.0, 0.0, 0.0);(0.8, 0.8, 1.0);building_windmill_wings_23;golfBorder+golfBuilding+_defaultMat]
+
+:materials
+Rock[RGBA(0.631, 0.624, 0.612, 1.000);]
+Sand_-_Bright[RGBA(0.969, 0.918, 0.792, 1.000);]
+Wood_Light[RGBA(0.737, 0.631, 0.463, 1.000);]
+Wood_Dark[RGBA(0.518, 0.420, 0.333, 1.000);]
+Iron_Grey_-_Light[RGBA(0.620, 0.604, 0.580, 1.000);]
+Iron_Grey[RGBA(0.526, 0.514, 0.475, 1.000);]
+Iron_Grey_-_Dark[RGBA(0.416, 0.400, 0.384, 1.000);]
+golfBorder[RGBA(1.000, 0.373, 0.204, 1.000);]
+golfBuilding[RGBA(1.000, 0.714, 0.408, 1.000);]
+_defaultMat[RGBA(1.000, 1.000, 1.000, 1.000);]
+
+:textures
+
+:extra
