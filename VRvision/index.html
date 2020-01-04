@@ -9,12 +9,15 @@
 
     <script src="https://aframe.io/releases/1.0.1/aframe.min.js"></script>
     <!--<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>-->
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
 
     <script src="libs/ocean-plane.js"></script>
+    <script src="components/grab.js"></script>
+    <script src="components/force-pushable.js"></script>
 
   </head>
   <body>
-    <a-scene>
+    <a-scene physics="debug: true"><!--  -->
       <!-- avatar-recorder avatar-replayer="src: https://cdn.glitch.com/d01b0eb7-9be3-4d2e-aaac-8ff0c728d7ba%2Fplayer-recording-A-Frame%20Motion%20Capture%20Development-1490397430529.json?1490401010899; loop: true; spectatorMode: false" -->
 
       <a-assets>
@@ -28,15 +31,27 @@
         <a-asset-item id="path-mtl" src="assets/beachdeck01/beachdeck01.mtl"></a-asset-item>
       </a-assets>
 
+      <!-- PACKAGE -->
+      <!-- TODO model
+      <a-entity obj-model="obj: url(...)" dynamic-body="shape: box; mass: 2"></a-entity>
+    -->
+      <a-box id="package" color="red" dynamic-body="shape: box; mass: 5" position="0 5 -2.8" width="0.5" height="0.3" depth="0.3" force-pushable="force: 10"></a-box>
+
       <!-- AVATAR -->
       <a-entity
         id="leftHand"
         hand-controls="left"
+        static-body="shape: sphere; sphereRadius: 0.02;"
+        sphere-collider="objects: [dynamic-body];"
+        grab
         ><!-- oculus-touch-controls="hand: left" -->
       </a-entity>
       <a-entity
         id="rightHand"
         hand-controls="right"
+        static-body="shape: sphere; sphereRadius: 0.02;"
+        sphere-collider="objects: [dynamic-body];"
+        grab
         ><!-- oculus-touch-controls="hand: right" -->
       </a-entity>
 
@@ -45,11 +60,14 @@
         look-controls
         wasd-controls="acceleration:100"
         position="0 1.6 0"
-        camera>
+        camera="userHeight: 1.6">
       </a-entity>
 
       <!-- PATH -->
-      <a-obj-model id="path" src="#path-obj" mtl="#path-mtl" rotation="0 180 0" position="0 -0.93 -1"></a-obj-model>
+      <a-box id="path-bounding-box" static-body position="0 -0.385 -1.523" width="1" height="1" depth="4" visible="false"></a-box>
+      <a-entity id="path" obj-model="obj: #path-obj; mtl: #path-mtl" rotation="0 180 0" position="0 -0.93 -1" ></a-entity>
+
+
 
       <!--<a-entity
         id="lobby"
@@ -62,7 +80,7 @@
 
       <!-- ENVIRONMENT -->
       <a-sky id="sky-img" src="#sky"></a-sky>
-      <a-ocean-plane material="normalMap: #water-normal; sphericalEnvMap: #sky;" position="0 -0.8 0" ></a-ocean-plane>
+      <a-ocean-plane material="normalMap: #water-normal; sphericalEnvMap: #sky;" position="0 -0.94 0" static-body></a-ocean-plane>
       <a-entity light="type: point; color: #f4f4f4; intensity: 0.2; distance: 0" position="8 10 18"></a-entity>
       <a-entity light="type: point; color: #f4f4f4; intensity: 0.5; distance: 0" position="-8 10 -18"></a-entity>
       <a-entity light="type: ambient; color: #f4f4f4; intensity: 0.4;" position="-8 10 -18"></a-entity>
