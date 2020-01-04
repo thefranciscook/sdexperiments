@@ -8,24 +8,212 @@
     <!--<script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.2.2/dist/aframe-extras.min.js"></script>-->
 
     <script src="https://aframe.io/releases/1.0.1/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
+    <!--<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>-->
+
+    <script src="libs/libs/BVHLoader.js"></script>
+    <script src="components/add-bvh-component.js"></script>
+    <script type="text/javascript">
+      // BVH click listener
+      // This component
+
+      let aframeScene = document.querySelector('a-scene').sceneEl
+      let scene = aframeScene.object3D
+      let mocapBaseID = 'BVH-'
+      let mocapElements = document.querySelectorAll(`[id^=${mocapBaseID}]`)
+      let mocapElementsNum = mocapElements.length
+      let mocapIndex = 0
+
+      aframeScene.addEventListener('click', function (event) {
+        // But we're just going to do a simple "visible" trick, since we only have 4 things to manage!
+        mocapElements[mocapIndex].setAttribute('visible', false)
+        // Modulo over the max number elements so that we can just keep cycling through the motion capture files
+        // on every click
+        mocapIndex = (mocapIndex + 1) % mocapElementsNum
+        mocapElements[mocapIndex].setAttribute('visible', true)
+      })
+    </script>
+    <script src="libs/ocean-plane.js"></script>
+</head>
+
+    <!--<script src="https://rawgit.com/msj121/aframeFrogShaders/master/aframe-shader-frog.js"></script>-->
+    <!--<script src="libs/aframe-import-shaderfrog.js"></script>
+    <script type="text/javascript">
+      importShaderFrog(depthShader,'shaders/Linear_depth_0_1_.json');
+    </script>-->
+
+    <script id="post-vert" type="x-shader/x-vertex">
+			varying vec2 vUv;
+			void main() {
+				vUv = uv;
+				gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+			}
+		</script>
+		<script id="post-frag" type="x-shader/x-fragment">
+			#include <packing>
+			varying vec2 vUv;
+			uniform sampler2D tDiffuse;
+			uniform sampler2D tDepth;
+			uniform float cameraNear;
+			uniform float cameraFar;
+			float readDepth( sampler2D depthSampler, vec2 coord ) {
+				float fragCoordZ = texture2D( depthSampler, coord ).x;
+				float viewZ = perspectiveDepthToViewZ( fragCoordZ, cameraNear, cameraFar );
+				return viewZToOrthographicDepth( viewZ, cameraNear, cameraFar );
+			}
+			void main() {
+				//vec3 diffuse = texture2D( tDiffuse, vUv ).rgb;
+				float depth = readDepth( tDepth, vUv );
+				gl_FragColor.rgb = 1.0 - vec3( depth );
+				gl_FragColor.a = 1.0;
+			}
+		</script>
+
+    <script src="components/materialdepth.js"></script>
+
+    <!-- minimap
+    <script>
+      AFRAME.registerComponent('camrender',{
+          'schema': {
+             // desired FPS
+             fps: {
+                  type: 'number',
+                  default: 60.0
+             },
+             // Id of the canvas element used for rendering the camera
+             cid: {
+                  type: 'string',
+                  default: 'camRenderer'
+             },
+             // Height of the renderer element
+             height: {
+                  type: 'number',
+                  default: 300
+             },
+             // Width of the renderer element
+             width: {
+                  type: 'number',
+                  default: 400
+             }
+          },
+          'update': function(oldData) {
+              var data = this.data
+              if (oldData.cid !== data.cid) {
+                  // Find canvas element to be used for rendering
+                  var canvasEl = document.getElementById(this.data.cid);
+                  // Create renderer
+                  this.renderer = new THREE.WebGLRenderer({
+                      antialias: true,
+                      canvas: canvasEl
+                  });
+                  // Set properties for renderer DOM element
+                  this.renderer.setPixelRatio( window.devicePixelRatio );
+                  this.renderer.domElement.crossorigin = "anonymous";
+              };
+              if (oldData.width !== data.width || oldData.height !== data.height) {
+                  // Set size of canvas renderer
+                  this.renderer.setSize(data.width, data.height);
+                  this.renderer.domElement.height = data.height;
+                  this.renderer.domElement.width = data.width;
+              };
+              if (oldData.fps !== data.fps) {
+                  // Set how often to call tick
+                  this.tick = AFRAME.utils.throttleTick(this.tick, 1000 / data.fps , this);
+              };
+          },
+          'tick': function(time, timeDelta) {
+              this.renderer.render( this.el.sceneEl.object3D , this.el.object3DMap.camera );
+          }
+      });
+
+      AFRAME.registerComponent('canvas-updater', {
+          dependencies: ['geometry', 'material'],
+
+          tick: function () {
+              var el = this.el;
+              var material;
+
+              material = el.getObject3D('mesh').material;
+              if (!material.map) { return; }
+              material.map.needsUpdate = true;
+          }
+      });
+      </script>
+      -->
+
   </head>
   <body>
-    <a-scene
-      fog="color: #bc483e; near: 0; far: 65;"
-      >
+    <a-scene>
       <!-- avatar-recorder avatar-replayer="src: https://cdn.glitch.com/d01b0eb7-9be3-4d2e-aaac-8ff0c728d7ba%2Fplayer-recording-A-Frame%20Motion%20Capture%20Development-1490397430529.json?1490401010899; loop: true; spectatorMode: false" -->
 
       <a-assets>
-        <!-- <a-asset-item id="m-02" src="assets/4/map_653417719_densified_mesh_textured_lod0z.gltf"></a-asset-item> -->
+        <!-- minimap
+        <canvas id="cam2"></canvas>-->
+        <img id="sky" crossorigin="anonymous" src="https://img.gs/bbdkhfbzkk/2048x1024,stretch/https://samsunginternet.github.io/a-frame-demos/a-frame-assets/sky/CGSkies_0347_free.jpg" />
+        <img id="water-normal" src="https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/waternormals.jpg" crossorigin="anonymous" />
+        <a-asset-item id="lobby01" src="assets/lobby01/map_37322885_densified_mesh_textured_lod0z.gltf"></a-asset-item>
+        <a-asset-item
+          id="mocap01"
+          src="assets/mocap01/Glycon2019-12-30 22-34-29.glb"
+          >
+        </a-asset-item>
+        <a-asset-item
+          id="assetforgetest-obj"
+          src="assets/assetforgetest/AssetForgeTest.obj"
+          >
+        </a-asset-item>
+        <a-asset-item
+          id="assetforgetest-mtl"
+          src="assets/assetforgetest/AssetForgeTest.mtl"
+          >
+        </a-asset-item>
       </a-assets>
 
-        <!--<a-entity
-          gltf-model="#m-08"
-          position="1.1 1.2 -0.59"
-          rotation="0 90 0"
+      <!--<a-entity
+        id="lobby"
+          material-depth
+          gltf-model="#lobby01"
+          position="0 0 0"
+          rotation="0 0 0"
           >
       </a-entity>-->
+
+      <!-- shader-frog="src:url(shaders/Linear_depth_0_1_.json)" -->
+      <a-box
+        material-depth
+
+        depth="2" height="4" width="0.5"
+        position="0 0 -5"
+        rotation="120 0 120"
+        ></a-box><!-- material="shader:standard; color:blue"-->
+        <!-- material="color:blue" -->
+
+        <a-box
+          material="color:blue"
+
+          depth="2" height="2" width="2"
+          position="0 0 -3"
+          rotation="0 0 0"
+          ></a-box>
+
+      <!--<a-entity id="mocap-avatar" scale="0.5 0.5 0.5" fbx-model="src: url(assets/mocap01/Glycon2019-12-30 22-34-29.fbx);"></a-entity>-->
+
+      <!--<a-entity
+        id="BVH-0"
+        rotation="0 90 0"
+        position="0 0 -4"
+        scale="0.25 0.25 0.25"
+        add-bvh="file: assets/mocap01/Glycon2019-12-30 22-34-29.bvh; visible: true">
+      </a-entity>-->
+
+      <a-entity
+          id="mocap-avatar"
+          gltf-model="#mocap01"
+          position="0 1 -2">
+      </a-entity>
+
+      <a-obj-model id="magic-environment" src="#assetforgetest-obj" mtl="#assetforgetest-mtl"></a-obj-model>
+
+
 
       <!-- AVATAR -->
       <a-entity
@@ -39,25 +227,35 @@
         ><!-- oculus-touch-controls="hand: right" -->
       </a-entity>
 
-      <a-entity
-          id="rig"
-          movement-controls
-          position="-17 1.6 -38"
-          rotation="0 180 0"
-          >
+
+      <!-- minimap: camera rig
+      <a-entity position="0.02 6 0.01" rotation="-90 0 0">
+        <a-camera camrender="cid: cam2" active="false" spectator="true">
+        </a-camera>
+      </a-entity>-->
+
         <a-entity
           id="camera"
-          camera
-          position="0 1.6 0"
-          look-controls="pointerLockEnabled: true">
+          look-controls
+          wasd-controls="acceleration:100"
+          camera>
+          <!-- minimap
+          <a-entity geometry="primitive:plane; width:.2; height:.2"
+                    material="src:#cam2; opacity: .6" canvas-updater
+                    position="0.2 -0.3 -0.7" rotation="0 -10 0"></a-entity>-->
+
         </a-entity>
-      </a-entity>
+
+
+
 
       <!-- ENVIRONMENT -->
-      <a-entity id="sky"
+    <!--  <a-entity id="sky"
                 geometry="primitive: sphere; radius: 65;"
-                material="shader: skyGradient; colorTop: #353449; colorBottom: #BC483E; side: back"></a-entity>
-     <a-entity ground></a-entity>
+                material="shader: skyGradient; colorTop: #353449; colorBottom: #BC483E; side: back"></a-entity>-->
+     <a-sky id="sky-img" src="#sky"></a-sky>
+     <a-ocean-plane material="normalMap: #water-normal; sphericalEnvMap: #sky;" position="0 -2 0" ></a-ocean-plane>
+     <!--<a-entity ground></a-entity>-->
      <a-entity light="type: point; color: #f4f4f4; intensity: 0.2; distance: 0" position="8 10 18"></a-entity>
      <a-entity light="type: point; color: #f4f4f4; intensity: 0.6; distance: 0" position="-8 10 -18"></a-entity>
      <a-entity light="type: ambient; color: #f4f4f4; intensity: 0.4;" position="-8 10 -18"></a-entity>

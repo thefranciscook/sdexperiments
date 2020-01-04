@@ -1,0 +1,75 @@
+{
+  "id": 3008,
+  "name": "Linear depth [0;1]",
+  "fragment": "/**\n* Example Fragment Shader\n* Sets the color and alpha of the pixel by setting gl_FragColor\n*/\n\n// Set the precision for data types used in this shader\nprecision highp float;\nprecision highp int;\n\n// Default THREE.js uniforms available to both fragment and vertex shader\nuniform mat4 modelMatrix;\nuniform mat4 modelViewMatrix;\nuniform mat4 projectionMatrix;\nuniform mat4 viewMatrix;\nuniform mat3 normalMatrix;\n\n// Default uniforms provided by ShaderFrog.\nuniform vec3 cameraPosition;\nuniform float time;\n\nuniform float near;\nuniform float far;\n\n\n// Example varyings passed from the vertex shader\nvarying vec3 vPosition;\nvarying vec3 vNormal;\nvarying vec2 vUv;\nvarying vec2 vUv2;\n\nvarying mat4 myProjMatrix;\n\n\nconst vec2 depthRangeTarget = vec2(0.0, 1.0);\n\n\nfloat RescaleToTargetRange(float viewDepth) {\n    \n    float nearX = (myProjMatrix[3][2] / (myProjMatrix[2][2] - 1.0));\n    float farX = (myProjMatrix[3][2] / (myProjMatrix[2][2] + 1.0));\n    \n\tfloat vdNorm = (viewDepth - nearX) / (farX - nearX);\n\treturn depthRangeTarget.x + vdNorm * (depthRangeTarget.y - depthRangeTarget.x);\n}\n\nfloat GetViewSpaceDepth(float depthNDC) {\n\treturn myProjMatrix[3][2] / (myProjMatrix[2][2] + depthNDC);\n}\n\n//choose one\n\n#define METHOD1 1\n//#define METHOD2 1\n//#define METHOD3 1\n\nvoid main() {\n    #define n22 myProjMatrix[2][2]\n    \n    float depthNDC = gl_FragCoord.z;\n    depthNDC = depthNDC * 2.0 - 1.0; \n    \n    \n    // These two below give the same result\n    //float vsDepth = GetViewSpaceDepth(depthNDC);\n    float vsDepth = 1.0/gl_FragCoord.w;\n    \n    //shaderfrog doesn't like #if #elif #else\n    \n    #ifdef METHOD1\n        //float normDepth = -(((1.0 + n22) * (-1.0 + 2.0 * n22 + depthNDC)) / (2.0 * (n22 + depthNDC)));\n        // wrong ^^^^^\n        float normDepth = ((1.0 + depthNDC) * (1.0 + n22))/(2.0 * (depthNDC + n22));\n    #endif\n    \n    #ifdef METHOD2\n        float normDepth = RescaleToTargetRange(vsDepth);\n    #endif    \n    \n    #ifdef METHOD3\n        float normDepth = (vsDepth - near)/(far - near);\n    #endif\n    \n    \n    //normDepth = depthNDC;\n    \n\n    //gl_FragColor = vec4( vec3(normDepth >= 0.9 ), 1.0 );\n    gl_FragColor = vec4( vec3(normDepth ), 1.0 );\n    \n\n}",
+  "vertex": "/**\n* Example Vertex Shader\n* Sets the position of the vertex by setting gl_Position\n*/\n\n// Set the precision for data types used in this shader\nprecision highp float;\nprecision highp int;\n\n// Default THREE.js uniforms available to both fragment and vertex shader\nuniform mat4 modelMatrix;\nuniform mat4 modelViewMatrix;\nuniform mat4 projectionMatrix;\nuniform mat4 viewMatrix;\nuniform mat3 normalMatrix;\n\n// Default uniforms provided by ShaderFrog.\nuniform vec3 cameraPosition;\nuniform float time;\n\n// Default attributes provided by THREE.js. Attributes are only available in the\n// vertex shader. You can pass them to the fragment shader using varyings\nattribute vec3 position;\nattribute vec3 normal;\nattribute vec2 uv;\nattribute vec2 uv2;\n\nuniform float near;\nuniform float far;\n\n// Examples of variables passed from vertex to fragment shader\nvarying vec3 vPosition;\nvarying vec3 vNormal;\nvarying vec2 vUv;\nvarying vec2 vUv2;\n\nvarying mat4 myProjMatrix;\n\nvoid main() {\n\n    // To pass variables to the fragment shader, you assign them here in the\n    // main function. Traditionally you name the varying with vAttributeName\n    vNormal = normal;\n    vUv = uv;\n    vUv2 = uv2;\n    vPosition = position;\n    \n    //const float near = 0.1;\n    //const float far = 10.0;\n    \n    myProjMatrix = projectionMatrix;\n    myProjMatrix[2][2] = -(far + near)/(far - near);\n    myProjMatrix[3][2] = -(2.0 * far * near)/(far - near);\n\n    // This sets the position of the vertex in 3d space. The correct math is\n    // provided below to take into account camera and object data.\n    gl_Position = myProjMatrix * modelViewMatrix * vec4( position, 1.0 );\n\n}",
+  "uniforms": {
+    "cameraPosition": {
+      "name": "cameraPosition",
+      "displayName": null,
+      "type": "v3",
+      "glslType": "vec3",
+      "useGridHelper": false,
+      "useRange": false,
+      "range": null,
+      "isRandom": false,
+      "randomRange": null,
+      "useToggle": false,
+      "toggle": null,
+      "description": ""
+    },
+    "time": {
+      "name": "time",
+      "displayName": null,
+      "type": "f",
+      "glslType": "float",
+      "useGridHelper": false,
+      "useRange": false,
+      "range": null,
+      "isRandom": false,
+      "randomRange": null,
+      "useToggle": false,
+      "toggle": null,
+      "description": ""
+    },
+    "near": {
+      "name": "near",
+      "displayName": null,
+      "type": "f",
+      "glslType": "float",
+      "useGridHelper": false,
+      "useRange": true,
+      "range": {
+        "min": "0.1",
+        "max": "1.0"
+      },
+      "isRandom": false,
+      "randomRange": null,
+      "useToggle": false,
+      "toggle": null,
+      "description": ""
+    },
+    "far": {
+      "name": "far",
+      "displayName": null,
+      "type": "f",
+      "glslType": "float",
+      "useGridHelper": false,
+      "useRange": true,
+      "range": {
+        "min": "1",
+        "max": "100.0"
+      },
+      "isRandom": false,
+      "randomRange": null,
+      "useToggle": false,
+      "toggle": null,
+      "description": ""
+    }
+  },
+  "url": "http://shaderfrog.com/app/view/3008",
+  "user": {
+    "username": "lhog",
+    "url": "http://shaderfrog.com/app/profile/andrewray"
+  }
+}
